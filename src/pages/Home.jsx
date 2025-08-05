@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Contact from "../components/Contact"; // ✅ Import the Contact component
 
 const Home = () => {
   const [daysLeft, setDaysLeft] = useState(0);
@@ -31,40 +32,49 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="text-center text-gray-800">
+    <div className="text-center text-gray-800 scroll-smooth">
       {/* Hero Section */}
       <section
         className="h-screen bg-cover bg-center flex flex-col justify-center items-center text-white transition-all duration-700"
-        style={{ backgroundImage: "url('/hero.jpg')" }}
+        style={{ backgroundImage: "url('/hero.png')" }}
+        id="home"
       >
         <h1 className="text-5xl font-bold mb-4 drop-shadow-lg animate-fade-in">
           WELCOME TO INNOVITA 2025!
         </h1>
         <h2 className="text-2xl font-semibold mb-6 drop-shadow-md animate-fade-in delay-100">
-          11TH AND 12TH AUGUST
+          COME JOIN US ON THE 11TH AND 12TH AUGUST
         </h2>
 
-        {/* Upgraded Register Button */}
-        <a
-          href="https://events.vitap.ac.in/e/management-meet-2025-vsb-8f7f1687-ec1a-4514-99af-e9a71b00419d"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="bg-white text-innovita font-semibold text-lg px-8 py-3 rounded-full shadow-md hover:shadow-lg hover:text-white hover:bg-innovita transition-all duration-300"
-        >
-        Register Now
-        </a>
+        <div className="flex flex-col md:flex-row gap-4">
+          <a
+            href="https://events.vitap.ac.in/e/management-meet-2025-vsb-8f7f1687-ec1a-4514-99af-e9a71b00419d"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-white text-innovita font-semibold text-lg px-8 py-3 rounded-full shadow-md hover:shadow-lg hover:text-white hover:bg-innovita transition-all duration-300"
+          >
+            Register Now
+          </a>
+          <a
+            href="/InnoVITa 2025.pdf"
+            download
+            className="bg-white text-innovita font-semibold text-lg px-8 py-3 rounded-full shadow-md hover:shadow-lg hover:text-white hover:bg-innovita transition-all duration-300"
+          >
+            Download Brochure
+          </a>
+        </div>
       </section>
 
       {/* Countdown Section */}
-      <section className="bg-innovita py-10 px-6">
+      <section className="bg-innovita py-10 px-6" id="countdown">
         <h3 className="text-2xl font-bold text-white mb-6 tracking-wide">
           Countdown to InnoVITa 2025
         </h3>
         <div className="flex flex-wrap justify-center items-center gap-6 max-w-3xl mx-auto">
           {[{ label: "Days", value: daysLeft },
-            { label: "Hours", value: hoursLeft },
-            { label: "Minutes", value: minutesLeft },
-            { label: "Seconds", value: secondsLeft }].map((item, i) => (
+          { label: "Hours", value: hoursLeft },
+          { label: "Minutes", value: minutesLeft },
+          { label: "Seconds", value: secondsLeft }].map((item, i) => (
             <div
               key={i}
               className="backdrop-blur-md bg-white/20 border border-white/30 text-white rounded-xl px-6 py-4 w-28 shadow-md transition-transform duration-500 transform hover:scale-105"
@@ -79,9 +89,11 @@ const Home = () => {
           ))}
         </div>
       </section>
-      
+
       {/* About Section */}
-      <section className="w-full bg-cover bg-center text-white py-20 px-6"
+      <section
+        id="about"
+        className="w-full bg-cover bg-center text-white py-20 px-6"
         style={{ backgroundImage: "url('/stars-bg.jpg')" }}
       >
         <div className="max-w-5xl mx-auto">
@@ -97,7 +109,9 @@ const Home = () => {
           </p>
         </div>
       </section>
-      
+
+      {/* 👇 Contact Section Embedded Here */}
+      <Contact />
     </div>
   );
 };

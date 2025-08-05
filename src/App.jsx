@@ -1,11 +1,11 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import SocialBar from "./components/SocialBar"; // ✅
+import SocialBar from "./components/SocialBar";
 import Home from "./pages/Home";
 import Events from "./pages/Events";
 import Team from "./pages/Team";
-import Contact from "./pages/Contact";
+import Contact from "./components/Contact"; 
 
 function App() {
   return (
