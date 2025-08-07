@@ -10,7 +10,7 @@ export default function Navbar() {
       </a>
       <ul className="flex gap-4">
         <li><a href="#home" className="hover:underline">Home</a></li>
-        <li><a href="#events" className="hover:underline">Event</a></li>
+        <li><a href="#events" className="hover:underline">Events</a></li>
         <li><a href="#team" className="hover:underline">Team</a></li>
         <li><a href="#contact" className="hover:underline">Contact</a></li>
       </ul>

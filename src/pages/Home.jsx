@@ -1,11 +1,22 @@
 import React, { useEffect, useState } from "react";
-import Contact from "../components/Contact"; // ✅ Import the Contact component
+import Contact from "../components/Contact";
+import Events from "../components/Events";
+
+const backgroundImages = [
+  "/hero1.jpg",
+  "/hero2.jpg",
+  "/hero3.jpg",
+  "/hero4.jpg",
+  "/hero5.jpg",
+  "/hero6.jpg"
+];
 
 const Home = () => {
   const [daysLeft, setDaysLeft] = useState(0);
   const [hoursLeft, setHoursLeft] = useState(0);
   const [minutesLeft, setMinutesLeft] = useState(0);
   const [secondsLeft, setSecondsLeft] = useState(0);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
     const target = new Date("2025-08-11T10:00:00");
@@ -31,12 +42,20 @@ const Home = () => {
     return () => clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    const sliderInterval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % backgroundImages.length);
+    }, 3000);
+
+    return () => clearInterval(sliderInterval);
+  }, []);
+
   return (
     <div className="text-center text-gray-800 scroll-smooth">
       {/* Hero Section */}
       <section
         className="h-screen bg-cover bg-center flex flex-col justify-center items-center text-white transition-all duration-700"
-        style={{ backgroundImage: "url('/hero.png')" }}
+        style={{ backgroundImage: `url('${backgroundImages[currentImageIndex]}')` }}
         id="home"
       >
         <h1 className="text-5xl font-bold mb-4 drop-shadow-lg animate-fade-in">
@@ -98,19 +117,16 @@ const Home = () => {
       >
         <div className="max-w-5xl mx-auto">
           <h2 className="text-5xl md:text-6xl font-extrabold mb-10 text-left md:text-center uppercase tracking-wide">
-            About Us
+            About Innovita
           </h2>
           <p className="text-lg md:text-xl text-justify leading-relaxed font-medium">
-            The INNOVITA 2025, hosted by the VIT-AP School of Business (VSB), is more than just a student fest;
-            it is a dynamic convergence of innovation, intellect, and inspiration. Conceived as a national-level
-            platform, this two-day celebration of business brilliance invites the brightest students from
-            Higher Secondary, undergraduate, and postgraduate levels across India to immerse themselves in the
-            real-world pulse of the corporate world.
+            Innovita, the business fest of VIT-AP Business School, is a dynamic celebration of innovation, strategy, and entrepreneurship. Featuring 12 curated events across domains like marketing, finance, startups, HR, analytics, and sustainability, it offers students a chance to tackle real-world business challenges and showcase their skills. With a prize pool of ₹1,00,000, Innovita provides recognition, rewards, and valuable networking opportunities with peers, faculty, and industry experts—all set against the vibrant backdrop of VIT-AP University, Amaravati.
           </p>
         </div>
       </section>
 
       {/* 👇 Contact Section Embedded Here */}
+      <Events />
       <Contact />
     </div>
   );

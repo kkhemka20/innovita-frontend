@@ -5,14 +5,14 @@ const team = [
   {
     name: "Amar Singh",
     role: "Marketing & PR Head",
-    image: "/amar.jpeg",
+    image: "/amar.jpg",
     linkedin: "https://www.linkedin.com/in/amar-singh-rathore-991907293/",
     email: "mailto:amar.23bba7001@vitapstudent.ac.in",
     whatsapp: "https://wa.me/919381728332"
   },
   {
     name: "Nikesh Polisetty",
-    role: "Sponsorship Head",
+    role: "Logistics Head",
     image: "/nikesh.jpg",
     linkedin: "https://www.linkedin.com/in/nikesh-polisetty-261987293/",
     email: "mailto:nikesh.23bba7003@vitapstudent.ac.in",
@@ -29,7 +29,7 @@ const team = [
   {
     name: "Neha Sreedhar",
     role: "Event Planning & Execution Head",
-    image: "/neha.jpeg",
+    image: "/neha.jpg",
     linkedin: "https://www.linkedin.com/in/neha-sreedhar-920672279/",
     email: "mailto:neha.23bba7044@vitapstudent.ac.in",
     whatsapp: "https://wa.me/919160534522"
