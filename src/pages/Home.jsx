@@ -8,7 +8,7 @@ const backgroundImages = [
   "/hero3.jpg",
   "/hero4.jpg",
   "/hero5.jpg",
-  "/hero6.jpg"
+  "/hero6.jpg",
 ];
 
 const Home = () => {
@@ -18,6 +18,7 @@ const Home = () => {
   const [secondsLeft, setSecondsLeft] = useState(0);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
+  // Countdown Timer
   useEffect(() => {
     const target = new Date("2025-08-11T10:00:00");
 
@@ -42,45 +43,69 @@ const Home = () => {
     return () => clearInterval(interval);
   }, []);
 
+  // Auto Slide Change
   useEffect(() => {
-    const sliderInterval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % backgroundImages.length);
-    }, 3000);
+    const slider = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % backgroundImages.length);
+    }, 5000);
 
-    return () => clearInterval(sliderInterval);
+    return () => clearInterval(slider);
   }, []);
 
   return (
     <div className="text-center text-gray-800 scroll-smooth">
-      {/* Hero Section */}
-      <section
-        className="h-screen bg-cover bg-center flex flex-col justify-center items-center text-white transition-all duration-700"
-        style={{ backgroundImage: `url('${backgroundImages[currentImageIndex]}')` }}
-        id="home"
-      >
-        <h1 className="text-5xl font-bold mb-4 drop-shadow-lg animate-fade-in">
-          WELCOME TO INNOVITA 2025!
-        </h1>
-        <h2 className="text-2xl font-semibold mb-6 drop-shadow-md animate-fade-in delay-100">
-          COME JOIN US ON THE 11TH AND 12TH AUGUST
-        </h2>
 
-        <div className="flex flex-col md:flex-row gap-4">
-          <a
-            href="https://events.vitap.ac.in/e/management-meet-2025-vsb-8f7f1687-ec1a-4514-99af-e9a71b00419d"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-white text-innovita font-semibold text-lg px-8 py-3 rounded-full shadow-md hover:shadow-lg hover:text-white hover:bg-innovita transition-all duration-300"
-          >
-            Register Now
-          </a>
-          <a
-            href="/InnoVITa 2025.pdf"
-            download
-            className="bg-white text-innovita font-semibold text-lg px-8 py-3 rounded-full shadow-md hover:shadow-lg hover:text-white hover:bg-innovita transition-all duration-300"
-          >
-            Download Brochure
-          </a>
+      {/* Hero Section */}
+      <section className="relative h-screen w-full overflow-hidden" id="home">
+        {backgroundImages.map((src, index) => (
+          <div
+            key={index}
+            className={`absolute top-0 left-0 w-full h-full bg-cover bg-center transition-opacity duration-1000 ease-in-out ${
+              index === currentImageIndex ? "opacity-100 z-10" : "opacity-0 z-0"
+            }`}
+            style={{ backgroundImage: `url(${src})` }}
+          ></div>
+        ))}
+
+        {/* Content Over Image */}
+        <div className="absolute z-20 w-full h-full flex flex-col justify-center items-center text-white text-center px-4">
+          <h1 className="text-5xl font-bold mb-4 drop-shadow-lg animate-fade-in">
+            WELCOME TO INNOVITA 2025!
+          </h1>
+          <h2 className="text-2xl font-semibold mb-6 drop-shadow-md animate-fade-in delay-100">
+            COME JOIN US ON THE 11TH AND 12TH AUGUST
+          </h2>
+
+          <div className="flex flex-col md:flex-row gap-4">
+            <a
+              href="https://events.vitap.ac.in/e/management-meet-2025-vsb-8f7f1687-ec1a-4514-99af-e9a71b00419d"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white text-innovita font-semibold text-lg px-8 py-3 rounded-full shadow-md hover:shadow-lg hover:text-white hover:bg-innovita transition-all duration-300"
+            >
+              Register Now
+            </a>
+            <a
+              href="/InnoVITa 2025.pdf"
+              download
+              className="bg-white text-innovita font-semibold text-lg px-8 py-3 rounded-full shadow-md hover:shadow-lg hover:text-white hover:bg-innovita transition-all duration-300"
+            >
+              Download Brochure
+            </a>
+          </div>
+        </div>
+
+        {/* Manual Dot Navigation */}
+        <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-30 flex gap-2">
+          {backgroundImages.map((_, idx) => (
+            <button
+              key={idx}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                currentImageIndex === idx ? "bg-white scale-125" : "bg-white/50"
+              }`}
+              onClick={() => setCurrentImageIndex(idx)}
+            ></button>
+          ))}
         </div>
       </section>
 
@@ -125,7 +150,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* 👇 Contact Section Embedded Here */}
+      {/* Events and Contact Sections */}
       <Events />
       <Contact />
     </div>
