@@ -152,7 +152,7 @@ const Events = () => {
       <h2 className="text-5xl md:text-6xl font-extrabold mb-6 text-center uppercase tracking-wide">
         EVENTS
       </h2>
-      <p className="text-lg md:text-xl font-semibold text-center mb-12 max-w-4xl mx-auto">
+      <p className="text-lg md:text-xl font-semibold text-justify mb-12 max-w-4xl mx-auto">
         The following are the events of InnoVITa 2025. From competitions that test leadership to informal rounds that spark creativity, each event is designed to bring out your best. Whether you're into strategy, design, finance, or stage presence -there’s something here for everyone! Scroll through the list below and pick your challenge.
       </p>
 
